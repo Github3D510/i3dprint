@@ -7,6 +7,8 @@
       html, body { margin: 0; padding: 0; overflow: hidden; height: 100%; }
       canvas { display: block; }
     </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./index.css">
     <!-- Import map pour charger three.js et Luma-Web (version 0.2.0 comme dans la documentation) -->
     <script type="importmap">
       {
@@ -20,6 +22,20 @@
   </head>
   <body>
     <canvas id="demoCanvas"></canvas>
+    <div class="p-4">
+      <form id="orderForm" class="space-y-2">
+        <div><label>Nom: <input type="text" name="customerName" required class="border" /></label></div>
+        <div><label>Email: <input type="email" name="customerEmail" required class="border" /></label></div>
+        <div><label>Fichier STL: <input type="file" name="fileInput" required /></label></div>
+        <div><label>Volume (cm³): <input type="number" step="0.1" id="volumeInput" required class="border" /></label></div>
+        <div><label>Matériau: <select id="materialSelect" class="border"></select></label></div>
+        <div><label>Remplissage (%): <input type="number" id="infillInput" value="20" min="0" max="100" class="border" /></label></div>
+        <div><label>Hauteur de couche (mm): <select id="layerHeightInput" class="border"><option value="0.1">0.1</option><option value="0.2" selected>0.2</option><option value="0.3">0.3</option><option value="0.4">0.4</option></select></label></div>
+        <div>Prix estimé: <span id="priceDisplay" class="font-bold"></span></div>
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2">Commander</button>
+      </form>
+    </div>
+    <script type="module" src="./src/index.js"></script>
     <script type="module">
       import * as THREE from 'three';
       import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
